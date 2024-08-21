@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/place-picker-fron/static/css/main.37ac8731.css",
+    "main.js": "/place-picker-fron/static/js/main.cb487ae4.js",
+    "index.html": "/place-picker-fron/index.html",
+    "main.37ac8731.css.map": "/place-picker-fron/static/css/main.37ac8731.css.map",
+    "main.cb487ae4.js.map": "/place-picker-fron/static/js/main.cb487ae4.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.37ac8731.css",
+    "static/js/main.cb487ae4.js"
+  ]
+}
