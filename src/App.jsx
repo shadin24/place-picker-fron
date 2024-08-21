@@ -3,7 +3,7 @@ import Places from './components/Places.jsx';
 import { AVAILABLE_PLACES ,} from './data.js';
 import Modal from './components/Modal.jsx';
 import DeleteConfirmation from './components/DeleteConfirmation.jsx';
-import logoImg from './assets/logo.png';
+
 
 
 
@@ -102,7 +102,7 @@ function App() {
       </Modal>
 
       <header>
-        <img src={logoImg} alt="Stylized globe" />
+        <img src="https://res.cloudinary.com/dpuz94s75/image/upload/v1724217203/logo_iojgba.png" alt="Stylized globe" />
         <h1>PlacePicker</h1>
         <p>
           Create your personal collection of places you would like to visit or
