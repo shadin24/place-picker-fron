@@ -35,7 +35,7 @@ function App() {
               ...place,
               image: {
                 ...place.image,
-                src: process.env.PUBLIC_URL + place.image.src.replace("../", "/") // Adjusting path
+                src: place.image.src
               }
             }));
            
