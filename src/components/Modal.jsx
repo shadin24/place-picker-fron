@@ -4,16 +4,16 @@ import { createPortal } from 'react-dom';
 const Modal = forwardRef(({ children }, ref) => {
   const dialogRef = useRef();
 
-  // Expose open and close methods to parent components via ref
+  
   useImperativeHandle(ref, () => ({
     open() {
       if (dialogRef.current) {
-        dialogRef.current.showModal(); // Show the dialog
+        dialogRef.current.showModal(); 
       }
     },
     close() {
       if (dialogRef.current) {
-        dialogRef.current.close(); // Close the dialog
+        dialogRef.current.close(); 
       }
     }
   }));

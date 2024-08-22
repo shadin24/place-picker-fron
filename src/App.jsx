@@ -18,37 +18,48 @@ function App() {
   const [pickedPlaces, setPickedPlaces] = useState(storedplace);
 
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        const latitude = position.coords.latitude;
-        const longitude = position.coords.longitude;
+    const fetchPlaces = (lat, lon) => {
+      fetch(`https://place-picker-backend.vercel.app/places/proximity/?lat=${lat}&lon=${lon}`)
+        .then((response) => {
+          if (!response.ok) {
+            return response.text().then((text) => {
+              throw new Error(text);
+            });
+          }
+          return response.json();
+        })
+        .then((data) => {
+          const adjustedData = data.map((place) => ({
+            ...place,
+            image: {
+              ...place.image,
+              src: place.image.src,
+            },
+          }));
   
-        fetch(`https://place-picker-backend.vercel.app/places/proximity/?lat=${latitude}&lon=${longitude}`)
-          .then(response => {
-            if (!response.ok) {
-              return response.text().then(text => { throw new Error(text); });
-            }
-            return response.json();
-          })
-          .then(data => {
-            const adjustedData = data.map(place => ({
-              ...place,
-              image: {
-                ...place.image,
-                src: place.image.src
-              }
-            }));
-           
-            setAvailablePlaces(adjustedData);
-          })
-          .catch(error => {
-            console.error('Error fetching places:', error);
-          });
-      },
-      (error) => {
-        console.error('Error getting geolocation:', error);
-      }
-    );
+          setAvailablePlaces(adjustedData);
+        })
+        .catch((error) => {
+          console.error("Error fetching places:", error);
+        });
+    };
+  
+    const handleSuccess = (position) => {
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
+      fetchPlaces(latitude, longitude);
+    };
+  
+    const handleError = (error) => {
+      console.error("Error getting geolocation:", error);
+      
+      
+      const defaultLatitude = 37.7749; 
+      const defaultLongitude = -122.4194; 
+      fetchPlaces(defaultLatitude, defaultLongitude);
+    };
+  
+    navigator.geolocation.getCurrentPosition(handleSuccess, handleError);
   }, []);
   
 
